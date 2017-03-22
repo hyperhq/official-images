@@ -33,17 +33,17 @@ chmod og-rwx -R ~/.aws
 
 if [ "${BUILD}x" == "yesx" ]; then
 	echo Build packages...
-        cd /hypersrc/hyperd/package/ubuntu/hypercontainer
+        cd /hypersrc/hyperd/package/debian/hypercontainer
 	VERSION=${hyperd_version} BRANCH=target ./make-hypercontainer-deb.sh
-        cd /hypersrc/hyperd/package/ubuntu/hyperstart
+        cd /hypersrc/hyperd/package/debian/hyperstart
 	VERSION=${hyperstart_version} BRANCH=target ./make-hyperstart-deb.sh
 
 	if [ "${UPLOAD}x" != "nonex" ]; then
 		echo "Upload packages to ${UPLOAD}..."
-		for deb in /hypersrc/hyperd/package/ubuntu/hyperstart/*.deb; do
+		for deb in /hypersrc/hyperd/package/debian/hyperstart/*.deb; do
 			aws s3 cp $deb s3://hypercontainer-build/${UPLOAD}/$(basename $deb)
 		done
-		for deb in /hypersrc/hyperd/package/ubuntu/hypercontainer/*.deb; do
+		for deb in /hypersrc/hyperd/package/debian/hypercontainer/*.deb; do
 			aws s3 cp $deb s3://hypercontainer-build/${UPLOAD}/$(basename $deb)
 		done
 	fi
