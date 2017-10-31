@@ -6,7 +6,7 @@ RUN apt-get update &&\
 		libdevmapper-dev libsqlite3-dev libvirt-dev python-pip && \
 	pip install awscli && \
 	apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN curl -sL https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz | tar -C /usr/local -zxf -
+RUN curl -sL https://redirector.gvt1.com/edgedl/go/go1.8.5.linux-arm64.tar.gz | tar -C /usr/local -zxf -
 
 RUN useradd makedeb && mkdir -p ~makedeb/.aws && chown -R makedeb.makedeb ~makedeb && chmod og-rw ~makedeb/.aws
 RUN mkdir -p /hypersrc/hyperd/../hyperstart &&\
