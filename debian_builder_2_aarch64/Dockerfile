@@ -15,6 +15,7 @@ RUN mkdir -p /hypersrc/hyperd/../hyperstart &&\
 	chown makedeb.makedeb -R /hypersrc
 
 ENV PATH /usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV USER makedeb
 ADD entrypoint.sh /
 
 USER makedeb
